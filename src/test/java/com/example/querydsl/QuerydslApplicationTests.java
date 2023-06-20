@@ -7,6 +7,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Commit;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -15,7 +16,10 @@ import javax.transaction.Transactional;
 import static org.assertj.core.api.Assertions.*;
 
 @SpringBootTest
+// test가 끝나고 db에 저장된 데이터를 rollback 해버림
 @Transactional
+// test가 끝나고 나서도 데이터를 저장함
+@Commit
 class QuerydslApplicationTests {
 
 //    자바 표준 스펙에서는 아래와 같이 사용
