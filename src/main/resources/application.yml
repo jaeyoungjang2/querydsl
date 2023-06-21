@@ -12,6 +12,8 @@ spring:
                 # system out 으로 query를 보여줌
                 # show_sql: true
                 format_sql: true
+                # jpql 결과를 주석으로 보여줌
+#                use_sql_comments: true
 logging.level:
     # log 형태로 query를 출력해줌.
     org.hibernate.SQL: debug

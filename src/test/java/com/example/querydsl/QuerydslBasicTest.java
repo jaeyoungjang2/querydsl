@@ -13,6 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 
+import static com.example.querydsl.entity.QMember.*;
 import static org.assertj.core.api.Assertions.*;
 
 @SpringBootTest
@@ -67,7 +68,7 @@ public class QuerydslBasicTest {
     public void startQuerydsl() {
         // 별칭 'm'을 줌, 크게 중요한건 아님
 //        QMember m = new QMember("m");
-        QMember m = QMember.member;
+        QMember m = member;
 
 
         Member findMember = queryFactory
@@ -77,6 +78,18 @@ public class QuerydslBasicTest {
                 // 이렇게 하면 sql injection 공격으로 부터 방어 가능?
                 // 컴파일 시점에서 오류를 잡아줄 수 있음 (jpql에서 문자열로 query를 작성하지 않기 때문에)
                 .where(m.username.eq("member1"))
+                .fetchOne();
+
+        assertThat(findMember.getUsername()).isEqualTo("member1");
+    }
+
+    @Test
+    public void search() {
+        // username == 1 && age == 10
+        Member findMember = queryFactory
+                .selectFrom(member)
+                .where(member.username.eq("memer1")
+                        .and(member.age.eq(10)))
                 .fetchOne();
 
         assertThat(findMember.getUsername()).isEqualTo("member1");
