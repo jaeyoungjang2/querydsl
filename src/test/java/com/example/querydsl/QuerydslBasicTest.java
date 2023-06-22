@@ -83,6 +83,8 @@ public class QuerydslBasicTest {
         assertThat(findMember.getUsername()).isEqualTo("member1");
     }
 
+    // and를 사용하는 두가지 방법
+    // 1. chain으로 사용
     @Test
     public void search() {
         // username == 1 && age == 10
@@ -90,6 +92,20 @@ public class QuerydslBasicTest {
                 .selectFrom(member)
                 .where(member.username.eq("memer1")
                         .and(member.age.eq(10)))
+                .fetchOne();
+
+        assertThat(findMember.getUsername()).isEqualTo("member1");
+    }
+
+    // ,를 이용하여 연결
+    @Test
+    public void searchAndParam() {
+        // username == 1 && age == 10
+        Member findMember = queryFactory
+                .selectFrom(member)
+                .where(
+                        member.username.eq("memer1"),
+                        member.age.eq(10))
                 .fetchOne();
 
         assertThat(findMember.getUsername()).isEqualTo("member1");

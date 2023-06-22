@@ -10,13 +10,15 @@ gradle -> other -> compileQuerydsl
 > q파일 생성된 결과는 아래 위치에서 확인할 수 있습니다
 ![img.png](img.png)
 
+<br/><br/>
+
 ---
-- 엔티티 생성
+## 엔티티 생성
 ![img_1.png](img_1.png)
 
 
 ---
-- Q-type 활용
+## Q-type 활용
   - 별칭을 직접 입력하는 방법<br/>
 ```- new QMember("m");```
   - 기본 인스턴스 사용 
@@ -26,3 +28,15 @@ gradle -> other -> compileQuerydsl
 querydsl에서 query와 관련된 것은 q타입을 이용합니다.
 querydsl은 jpql의 builder 역할을 하는 것입니다.
 결국은 jpql로 변하는 것입니다.
+
+
+<br/><br/>
+
+---
+## 정적 쿼리를 이용해서 and 조건을 사용하는 두가지 방법
+  - chain을 이용하는 방법
+  - ","를 이용하여 연결하는 방법 (null 처리 용이, 동적 쿼리를 만들 때도 사용)
+
+![img_2.png](img_2.png)
+
+
