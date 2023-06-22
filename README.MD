@@ -61,4 +61,12 @@ querydsl은 jpql의 builder 역할을 하는 것입니다.
 <br/><br/>
 
 ---
+## 페이징
+ - offset limit을 이용한 paging 활용 방법
+
+![img_5.png](img_5.png)
+
+<br/><br/>
+
+---
 
