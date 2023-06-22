@@ -69,4 +69,8 @@ querydsl은 jpql의 builder 역할을 하는 것입니다.
 <br/><br/>
 
 ---
+## 집합
+ - group by, having 에 관한 함수이다.
+
+![img_6.png](img_6.png)
 
