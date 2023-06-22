@@ -74,3 +74,18 @@ querydsl은 jpql의 builder 역할을 하는 것입니다.
 
 ![img_6.png](img_6.png)
 
+
+<br/><br/>
+
+---
+## 기본 조인
+
+![img_7.png](img_7.png)
+
+
+<br/><br/>
+
+---
+## 세타 조인
+
+![img_8.png](img_8.png)
