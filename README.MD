@@ -40,3 +40,15 @@ querydsl은 jpql의 builder 역할을 하는 것입니다.
 ![img_2.png](img_2.png)
 
 
+<br/><br/>
+
+---
+## 결과 조회를 하는 다양한 방법
+
+![img_3.png](img_3.png)
+
+
+
+<br/><br/>
+
+---
