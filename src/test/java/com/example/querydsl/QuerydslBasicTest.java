@@ -15,6 +15,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.PersistenceUnit;
 import javax.transaction.Transactional;
 
 import java.util.List;
@@ -354,5 +356,48 @@ public class QuerydslBasicTest {
         for (Tuple tuple : fetch) {
             System.out.println("tuple = " + tuple);
         }
+    }
+
+    @PersistenceUnit
+    EntityManagerFactory emf;
+    @Test
+    public void no_fetch_join() throws Exception {
+        //given
+        // 테스트를 위하여 영속성 컨텍스트를 비워줍니다.
+        em.flush();
+        em.clear();
+
+        // when
+        Member findMember = queryFactory
+                .selectFrom(member)
+                .join(member.team, team)
+                .where(member.username.eq("member1"))
+                .fetchOne();
+
+        // then
+        // 이미 loading된 entity인지 loading이 안된 (초기화가 안된) entity인지 가르쳐 준다.
+        // member에서 team은 지연 로딩으로 되어있기 떄문에 현재는 team을 안 가져온 상태이다.
+        boolean loaded = emf.getPersistenceUnitUtil().isLoaded(findMember.getTeam());
+        assertThat(loaded).as("페치 조인 미적용").isFalse();
+
+    }
+
+    /**
+     * 페치 조인
+     * member를 가져올 때 team도 같이 가져와서 넣어준다.
+     */
+    @Test
+    public void fetch_join_use() {
+        em.flush();
+        em.clear();
+
+        Member findMember = queryFactory
+                .selectFrom(member)
+                .join(member.team, team).fetchJoin()
+                .where(member.username.eq("member1"))
+                .fetchOne();
+
+        boolean loaded = emf.getPersistenceUnitUtil().isLoaded(findMember.getTeam());
+        assertThat(loaded).as("페치 조인 미적용").isTrue();
     }
 }
