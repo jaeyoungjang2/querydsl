@@ -210,3 +210,33 @@ querydsl은 jpql의 builder 역할을 하는 것입니다.
  - "이름_나이" 로 결과가 나온 것을 확인할 수 있습니다.
 
 ![img_27.png](img_27.png)
+
+
+<br/><br/>
+
+---
+## 프로젝션과 결과 반환 - 기본
+ - 프로젝션이란 select 구문에 나열하는 것을 말한다.
+
+### [ 프로젝션 대상이 하나인 경우 ]
+ - 타입을 지정할 수 있다.
+
+![img_28.png](img_28.png)
+
+- 결과는 아래와 같다.
+
+![img_29.png](img_29.png)
+
+### [ 프로젝션 대상이 둘 이상인 경우 ]
+ - DTO 또는 tuple을 사용하여 반환 받아야 한다.
+   - 이때 tuple은 QueryDSL에서 제공해주는 인터페이스이다.
+   - com.querydsl.core 패키지에서 가지고 온 라이브러리이다.
+   - repository 계층에서 사용하는 것은 괜찮디만, service로 넘어가는 것은 좋지 않을 것 같음.
+   - tuple도 querydsl에 종속적이기 떄문에 바깥으로 나갈때는 dto로 변환해서 나가는 것을 권장함.
+
+![img_30.png](img_30.png)
+
+![img_31.png](img_31.png)
+
+
+
