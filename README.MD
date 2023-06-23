@@ -239,4 +239,62 @@ querydsl은 jpql의 builder 역할을 하는 것입니다.
 ![img_31.png](img_31.png)
 
 
+<br/><br/>
+
+---
+## 프로젝션 결과 반환 - DTO
+
+- 테스트를 위하여 MemberDto를 만들어줍니다.
+
+![img_39.png](img_39.png)
+
+### [ JPQL을 이용하여 DTO로 값을 받아오기 ]
+
+ - new operation 방법을 이용하면 JPQL을 이용해서 DTO로 받아올 수 있다.  
+
+![img_32.png](img_32.png)
+
+### [ QUerydsl을 이용하여 DTO로 값을 받아오기 - Setter ]
+ - 이때는 setter와 기본 생성자가 존재해야 한다.
+   - 기본 생성자를 이용하여 객체 생성
+   - setter를 이용하여 Projections.bean 안에 있는 값들을 설정해준다.
+
+![img_33.png](img_33.png)
+
+![img_34.png](img_34.png)
+
+### [ Querydsl을 이용하여 DTo로 값을 받아오기 - field ]
+ - getter setter가 필요없다.
+ - field가 private이라도 값을 넣을 수 있다.
+   - 자바 리플렉션을 이용해도 할 수 있고..
+
+![img_35.png](img_35.png)
+
+![img_36.png](img_36.png)
+
+### [ Querydsl을 이용하여 DTO로 값을 받아오기 - 생성자 ]
+ - Projections.counstructor에 들어가는 변수 순서와, 생성자의 변수 순서를 맞춰줘야 한다.
+
+![img_37.png](img_37.png)
+
+![img_38.png](img_38.png)
+
+### [ 별칭이 다른 경우 - field ]
+ - 테스트를 위하여 age와 name을 필드고 갖는 userDto를 생성
+
+![img_40.png](img_40.png)
+
+ - as로 변수와 필드명을 맞춰줘야 한다.
+
+![img_42.png](img_42.png)
+
+### [ subQuery로 인하여 별칭이 다른 경우 - field ]
+
+![img_43.png](img_43.png)
+
+ - 결과는 그대로 나오는 것을 확인할 수 있다.
+
+![img_44.png](img_44.png)
+
+## * 생성자의 경우는 타입을 맞춰줄 필요가 없다. 대신 DTO에 생성자를 만들어줘야 하는 것을 잊으면 안된다.
 
