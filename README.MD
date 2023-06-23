@@ -181,10 +181,32 @@ querydsl은 jpql의 builder 역할을 하는 것입니다.
 ### [ 간단한 case 문 ]
 
 ![img_21.png](img_21.png)
+
 ![img_20.png](img_20.png)
 
 ### [ 복잡한 case 문 ]
  - caseBuilder를 이용할 수 있음
 
 ![img_22.png](img_22.png)
+
 ![img_23.png](img_23.png)
+
+
+<br/><br/>
+
+---
+## 상수, 문자 더하기
+
+### [ 상수값 추가 ]
+![img_25.png](img_25.png) 
+
+![img_24.png](img_24.png)
+
+### [문자 더하기 ]
+ - 의외로 자주 사용하는 곳이 많은 문자 더하기 파트 입니다.
+ - type을 맞춰주는 것이 관건입니다.
+ - member.age 에 stringValue를 추가해준 것이 포인트입니다.
+![img_26.png](img_26.png)
+ - "이름_나이" 로 결과가 나온 것을 확인할 수 있습니다.
+
+![img_27.png](img_27.png)
