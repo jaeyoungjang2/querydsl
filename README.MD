@@ -37,7 +37,7 @@ querydsl은 jpql의 builder 역할을 하는 것입니다.
   - chain을 이용하는 방법
   - ","를 이용하여 연결하는 방법 (null 처리 용이, 동적 쿼리를 만들 때도 사용)
 
-![img_2.png](images/img_2.png)
+![img.png](img.png)
 
 
 <br/><br/>
@@ -332,3 +332,24 @@ querydsl은 jpql의 builder 역할을 하는 것입니다.
 ![img_48.png](images/img_48.png)
 
  - Projections.constructor 와의 차이는 컴파일 시점에서는 오류를 잡지 못하고, 런타임 시점에서 문제를 찾을 수 있다.
+
+
+# 동적쿼리
+ - 동적 쿼리를 해결하는 두가지 방식
+   - BooleanBuilder
+   - Where 다중 파라미터 사용
+
+## 동적 쿼리 - BooleanBuilder
+
+- front에서 username이 "member1"이고 userage가 10살인 사람을 찾아줘 라는 명령을 했다고 가정
+
+![img_2.png](img_2.png)
+
+ - BooleanBuilder를 이용해서 where 조건문에 들어갈 조건을 만들어준다.
+ - 만약 username, age 모두 null 인 경우는 where조건이 없는 경우와 동일하다고 보면 된다.
+
+![img_3.png](img_3.png)
+
+
+
+![img_1.png](img_1.png)
