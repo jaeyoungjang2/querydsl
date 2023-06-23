@@ -151,3 +151,23 @@ querydsl은 jpql의 builder 역할을 하는 것입니다.
 <br/><br/>
 
 ---
+## 서브 쿼리
+
+ - subQuery는 JPAExpression을 사용하면 된다.
+ - from 절의 서브쿼리 한계
+   - JPA, JPQL 서브쿼리의 한계점이며, 당연히 QueryDSL도 지원하지 않는다.
+ - from 절의 서브쿼리 해결 방안
+   - 서브쿼리를 join으로 변경한다. (가능한 상황도 있고, 불가능한 상황도 있다.)
+   - 애플리케이션에서 쿼리를 2번 분리해서 실행한다.
+   - nativeSQL을 사용한다.
+
+### [ where절 subQuery ]
+ 
+
+![img_17.png](img_17.png)
+
+### [ Select subquery ]
+![img_18.png](img_18.png)
+
+![img_19.png](img_19.png)
+
