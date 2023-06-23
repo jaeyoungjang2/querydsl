@@ -171,3 +171,20 @@ querydsl은 jpql의 builder 역할을 하는 것입니다.
 
 ![img_19.png](img_19.png)
 
+
+<br/><br/>
+
+---
+## case 문
+ - case문을 사용하는 것을 지양하길 바라긴 함.
+ - 있다는 것 정도만 알고 넘어갈 것
+### [ 간단한 case 문 ]
+
+![img_21.png](img_21.png)
+![img_20.png](img_20.png)
+
+### [ 복잡한 case 문 ]
+ - caseBuilder를 이용할 수 있음
+
+![img_22.png](img_22.png)
+![img_23.png](img_23.png)
