@@ -298,3 +298,37 @@ querydsl은 jpql의 builder 역할을 하는 것입니다.
 
 ## * 생성자의 경우는 타입을 맞춰줄 필요가 없다. 대신 DTO에 생성자를 만들어줘야 하는 것을 잊으면 안된다.
 
+
+<br/><br/>
+
+---
+## QueryProjection
+ - 궁극의 방법이라고 할 수 있지만 단점도 존재한다.
+
+### [ 장점 ]
+ - 컴파일 시점에 오류를 확인할 수 있다.
+
+### [ 단점 ] 
+ - q-file을 생성해야 한다는 것
+ - dto가 querydsl에 대한 library 의존성이 생긴다.
+ - querydsl library를 빼게 되면 영향을 받게 된다.
+ - dto 같은 경우에는 controller, service, repository 등 여러 layer에 걸쳐서 사용되는데, querydsl에 의존적으로 설계 되어있다는게 아키텍처적으로 깔끔하지 못하다.
+
+
+### [ 사용 방법 ]
+ - 생성자에 @QUeryProjection 어노테이션을 추가하고
+ - Tasks > other > compileQuerydsl을 하여 dto를 Qfile로 만드는 것이다.
+
+ - @QueryProjection 어노테이션 추가
+
+![img_45.png](img_45.png)
+
+ - Q-file 생성
+
+![img_47.png](img_47.png)
+
+ - 테스트 코드를 통한 확인
+
+![img_48.png](img_48.png)
+
+ - Projections.constructor 와의 차이는 컴파일 시점에서는 오류를 잡지 못하고, 런타임 시점에서 문제를 찾을 수 있다.
