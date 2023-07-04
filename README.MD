@@ -334,11 +334,19 @@ querydsl은 jpql의 builder 역할을 하는 것입니다.
  - Projections.constructor 와의 차이는 컴파일 시점에서는 오류를 잡지 못하고, 런타임 시점에서 문제를 찾을 수 있다.
 
 
+<br/><br/>
+
+---
+
 # 동적쿼리
  - 동적 쿼리를 해결하는 두가지 방식
    - BooleanBuilder
    - Where 다중 파라미터 사용
 
+
+<br/><br/>
+
+---
 ## 동적 쿼리 - BooleanBuilder
 
 - front에서 username이 "member1"이고 userage가 10살인 사람을 찾아줘 라는 명령을 했다고 가정
@@ -353,3 +361,22 @@ querydsl은 jpql의 builder 역할을 하는 것입니다.
 
 
 ![img_1.png](img_1.png)
+
+
+
+<br/><br/>
+
+---
+## 동적 쿼리 - where 다중 파라미터 사용
+
+ - booleanbuilder 보다 훨씬 더 깔끔하게 구현할 수 있음.
+ - 메인이 되는 몸통 부분만 보면 어떤 쿼리가 발생하는 지 직관적으로 알 수 있다. (searchMember2 메서드)
+
+![img_4.png](img_4.png)
+
+
+ - 아래와 같이 booleanExpression을 이용하여서 조건을 묶을 수도 있다.
+ 
+
+![img_5.png](img_5.png)
+
