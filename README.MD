@@ -455,3 +455,14 @@ querydsl은 jpql의 builder 역할을 하는 것입니다.
 
 ![img_20.png](img_20.png)
 
+ - 하지만 아래의 결과와 똑같기 때문에 상황2는 아래와 같이 구현하는 것이 간결하다.
+
+![img_21.png](img_21.png)
+
+
+
+<br/><br/>
+
+---
+## 실무 활용 - 순수 JPA 리포지토리와 Querydsl
+
