@@ -1,12 +1,15 @@
 package com.example.querydsl.repository;
 
 import com.example.querydsl.entity.Member;
+import com.example.querydsl.entity.QMember;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import java.util.List;
 import java.util.Optional;
+
+import static com.example.querydsl.entity.QMember.*;
 
 @Repository
 public class MemberJpaRepository {
@@ -33,9 +36,22 @@ public class MemberJpaRepository {
                 .getResultList();
     }
 
+    public List<Member> findAllQueryDsl() {
+        return queryFactory
+                .selectFrom(member)
+                .fetch();
+    }
+
     public List<Member> findByUsername(String username) {
         return em.createQuery("select m from Member m where m.username = :username", Member.class)
                 .setParameter("username", username)
                 .getResultList();
+    }
+
+    public List<Member> findByUsernameQueryDsl(String username) {
+        return queryFactory
+                .selectFrom(member)
+                .where(member.username.eq(username))
+                .fetch();
     }
 }
