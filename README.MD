@@ -510,5 +510,12 @@ querydsl은 jpql의 builder 역할을 하는 것입니다.
    - null만 조심하면 조립해서 사용할 수 있다, 메서드 재사용도 가능하다.
  
 ![img_25.png](img_25.png) 
- 
-   
+
+
+## 목 데이터 삽입 (가짜 데이터)
+
+ - postConstruct annotation이 들어있는 곳에 member를 저장하는 로직을 둘 수 있지만 postConstruct 어노테이션과 transactional 어노테이션은 같이 사용할 수 없다.
+ - 스프링 라이프 사이클을 공부해보기 바란다.
+
+![img_27.png](img_27.png)
+
