@@ -420,3 +420,38 @@ querydsl은 jpql의 builder 역할을 하는 것입니다.
 - 다양한 벌크 연산 방법
 
 ![img_14.png](img_14.png)
+
+
+<br/><br/>
+
+---
+## SQL function 호출하기
+ - SQL function은 JPA와 같이 Dialect에 등록된 내용만 호출할 수 있다.
+ - 현재는 h2 db를 사용하고 있기 때문에 h2 Dialect에 등록된 기능만 사용할 수 있다.
+ - org.hibernate 패키지에 존재한다.
+
+![img_15.png](img_15.png)
+
+ - registerFunction 메서드로 등록이 되어있는 것을 볼 수 있다.
+
+![img_16.png](img_16.png)
+
+ - 사용 방법을 살펴보자
+ - 아래와 같이 String template을 이용하여 function을 사용할 수 있다.
+ - 상황에 맞는 Template을 사용하면 된다.
+ - 상황1: 사용자의 이름을 변경 member -> M
+
+![img_17.png](img_17.png)
+
+ - 아래와 같은 결과가 나온다.
+
+![img_18.png](img_18.png)
+
+ - 상황2: 사용자 이름이 소문자 이름과 동일한 결과만 가지고 오고 싶을 때
+
+![img_19.png](img_19.png)
+
+ - 모든 결과가 다 나오게 된다.
+
+![img_20.png](img_20.png)
+
