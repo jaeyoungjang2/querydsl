@@ -472,3 +472,43 @@ querydsl은 jpql의 builder 역할을 하는 것입니다.
  - 가짜 엔티티 매니저는 실제 사용 시점에 트랜잭션 단위로 실제 엔티티 매니저를 할당해준다.
  - 더 자세한 내용은 자바 ORM 표준 JPA 책 13.1 트랜잭션 범위의 영속성 컨텍스트를 참고
 
+
+ 
+ <br/><br/>
+ 
+ ---
+
+## 동적 쿼리와 성능 최적화 조회 - builder 사용
+ - member와 team 정보를 섞어서 원하는 데이터만 들고올 예정
+   - MemberTeamDto를 만듦
+
+![img_23.png](img_23.png)
+
+ - admin 화면인데 회원 명, team 이름, 나이 등의 조건으로 검색할 수 있도록 함
+   - MemberSearchCondition 이라는 dto 파일을 만듦
+
+![img_24.png](img_24.png)
+
+ - booleanbuilder를 이용해서 값을 가져옵니다.
+ - 모든 where 조건이 null 일 경우 모든 데이터를 조회해 오기 때문에 이러한 경우는 주의해야합니다.
+   - condition이 모두 null인 경우 막아주던가
+   - 페이징 쿼리 또는 limit을 사용하도록 한다.
+
+![img_22.png](img_22.png)
+
+
+
+<br/><br/>
+
+---
+## 동적 쿼리와 성능 최적화 조회 - Where절 파라미터 사용
+ - 사용방법은 boolanBuilder와 비슷하다.
+
+![img_26.png](img_26.png)
+
+ - predicate 보다 booleanExpression 으로 사용하는 것을 추천
+   - null만 조심하면 조립해서 사용할 수 있다, 메서드 재사용도 가능하다.
+ 
+![img_25.png](img_25.png) 
+ 
+   
