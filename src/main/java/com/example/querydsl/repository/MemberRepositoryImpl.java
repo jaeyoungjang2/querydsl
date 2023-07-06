@@ -6,11 +6,13 @@ import com.example.querydsl.dto.QMemberTeamDto;
 import com.example.querydsl.entity.Member;
 import com.querydsl.core.QueryResults;
 import com.querydsl.core.types.dsl.BooleanExpression;
+import com.querydsl.jpa.JPQLQuery;
 import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 import org.springframework.data.support.PageableExecutionUtils;
 import org.springframework.util.StringUtils;
 
@@ -20,15 +22,37 @@ import java.util.List;
 import static com.example.querydsl.entity.QMember.member;
 import static com.example.querydsl.entity.QTeam.team;
 
-public class MemberRepositoryImpl implements MemberRepositoryCustom {
+public class MemberRepositoryImpl extends QuerydslRepositorySupport implements MemberRepositoryCustom {
 
     private final JPAQueryFactory queryFactory;
 
     public MemberRepositoryImpl(EntityManager em) {
+        super(Member.class);
         this.queryFactory = new JPAQueryFactory(em);
     }
 
+
     public List<MemberTeamDto> search(MemberSearchCondition condition) {
+
+        // querydsl 3버전때 만들어졌고, 그때는 from 부터 시작되었음
+        // queryfactory는 4버전때 만들어진 것임
+
+        from(member)
+                .leftJoin(member.team, team)
+                .where(
+                        usernameEq(condition.getUsername()),
+                        teamNameEq(condition.getTeamName()),
+                        ageGoe(condition.getAgeGoe()),
+                        ageLoe(condition.getAgeLoe())
+                )
+                .select(new QMemberTeamDto(
+                        member.id.as("memberId"),
+                        member.username,
+                        member.age,
+                        team.id.as("teamId"),
+                        team.name.as("teamName")))
+                .fetch();
+
         return queryFactory
                 .select(new QMemberTeamDto(
                         member.id.as("memberId"),
@@ -72,6 +96,32 @@ public class MemberRepositoryImpl implements MemberRepositoryCustom {
 
         List<MemberTeamDto> content = results.getResults();
         long total = results.getTotal();
+
+        return new PageImpl<>(content, pageable, total);
+    }
+
+
+    public Page<MemberTeamDto> searchPageSimple2(MemberSearchCondition condition, Pageable pageable) {
+        JPQLQuery<MemberTeamDto> jpaQuery = from(member)
+                .join(member.team, team)
+                .where(
+                        usernameEq(condition.getUsername()),
+                        teamNameEq(condition.getTeamName()),
+                        ageGoe(condition.getAgeGoe()),
+                        ageLoe(condition.getAgeLoe())
+                )
+                .select(new QMemberTeamDto(
+                        member.id.as("memberId"),
+                        member.username,
+                        member.age,
+                        team.id.as("teamId"),
+                        team.name.as("teamName")));
+
+        JPQLQuery<MemberTeamDto> query = getQuerydsl().applyPagination(pageable, jpaQuery);
+
+        QueryResults<MemberTeamDto> results = query.fetchResults();
+        long total = results.getTotal();
+        List<MemberTeamDto> content = results.getResults();
 
         return new PageImpl<>(content, pageable, total);
     }

@@ -582,6 +582,26 @@ feat: 스프링 데이터 페이징 활용1 - queryDsl 페이지 연동
  - 단순한 조건만 가능
  - 조건을 커스텀하는 기능이 복잡하고 명시적이지 않음
  - 컨트롤러가 querydsl에 의존
- - 
+
+ 
+ <br/><br/>
+ 
+ ---
+### QuerydslRepositorySupport
+ - 페이징을 querydsl로 편리하게 변환 가능하지만 sort는 오류가 발생한다.
+ - select로 시작할 수 없다. 
+ - queryfactory를 제공하지 않음
+
+ - 아래와 같이 extends를 추가해줘야 한다.
+ - super(Member.class)
+
+![img_32.png](img_32.png)
+
+ - 페이징을 아래와 같이 깔끔하게 할 수 있다.
+
+![img_33.png](img_33.png)
+
+
+
 
 
