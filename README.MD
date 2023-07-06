@@ -602,6 +602,19 @@ feat: 스프링 데이터 페이징 활용1 - queryDsl 페이지 연동
 ![img_33.png](img_33.png)
 
 
+<br/><br/>
+
+---
+Querydsl 지원 클래스 직접 만들기
+ - advance 영역
+ - QuerydslRepositorySupport가 지닌 한계를 극복
+ - 라이브러리를 확장하고 기능을 제공하는 것을 넘어서 더 좋게 쓰는 방법을 익혀보자
+ - 스프링 데이터가 제공하는 페이징을 편리하게 변환
+ - 페이징과 카운트 쿼리 분리 가능
+ - 스프링 데이터 Sort 지원
+ - `select()`, `selectFrom()` 으로 시작할 수 있음
+
+
 
 
 
