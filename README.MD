@@ -37,7 +37,7 @@ querydsl은 jpql의 builder 역할을 하는 것입니다.
   - chain을 이용하는 방법
   - ","를 이용하여 연결하는 방법 (null 처리 용이, 동적 쿼리를 만들 때도 사용)
 
-![img.png](img.png)
+![img.png](Images2/img.png)
 
 
 <br/><br/>
@@ -351,16 +351,16 @@ querydsl은 jpql의 builder 역할을 하는 것입니다.
 
 - front에서 username이 "member1"이고 userage가 10살인 사람을 찾아줘 라는 명령을 했다고 가정
 
-![img_2.png](img_2.png)
+![img_2.png](Images2/img_2.png)
 
  - BooleanBuilder를 이용해서 where 조건문에 들어갈 조건을 만들어준다.
  - 만약 username, age 모두 null 인 경우는 where조건이 없는 경우와 동일하다고 보면 된다.
 
-![img_3.png](img_3.png)
+![img_3.png](Images2/img_3.png)
 
 
 
-![img_1.png](img_1.png)
+![img_1.png](Images2/img_1.png)
 
 
 
@@ -372,13 +372,13 @@ querydsl은 jpql의 builder 역할을 하는 것입니다.
  - booleanbuilder 보다 훨씬 더 깔끔하게 구현할 수 있음.
  - 메인이 되는 몸통 부분만 보면 어떤 쿼리가 발생하는 지 직관적으로 알 수 있다. (searchMember2 메서드)
 
-![img_4.png](img_4.png)
+![img_4.png](Images2/img_4.png)
 
 
  - 아래와 같이 booleanExpression을 이용하여서 조건을 묶을 수도 있다.
  
 
-![img_5.png](img_5.png)
+![img_5.png](Images2/img_5.png)
 
 
 
@@ -395,20 +395,20 @@ querydsl은 jpql의 builder 역할을 하는 것입니다.
  - bulk 연산을 마치면 영속성 컨텍스트를 초기화 시켜주는 것이 좋다.
 
 
-![img_10.png](img_10.png)
+![img_10.png](Images2/img_10.png)
 
  - 결과
 
-![img_11.png](img_11.png)
+![img_11.png](Images2/img_11.png)
 
 
  - em.flush, em.clear를 통해 영속성 컨텍스트를 비운 뒤, db와 값을 맞춰준다.
 
-![img_12.png](img_12.png)
+![img_12.png](Images2/img_12.png)
 
  - 결과
 
-![img_13.png](img_13.png)
+![img_13.png](Images2/img_13.png)
 
 
 
@@ -419,7 +419,7 @@ querydsl은 jpql의 builder 역할을 하는 것입니다.
 
 - 다양한 벌크 연산 방법
 
-![img_14.png](img_14.png)
+![img_14.png](Images2/img_14.png)
 
 
 <br/><br/>
@@ -430,34 +430,34 @@ querydsl은 jpql의 builder 역할을 하는 것입니다.
  - 현재는 h2 db를 사용하고 있기 때문에 h2 Dialect에 등록된 기능만 사용할 수 있다.
  - org.hibernate 패키지에 존재한다.
 
-![img_15.png](img_15.png)
+![img_15.png](Images2/img_15.png)
 
  - registerFunction 메서드로 등록이 되어있는 것을 볼 수 있다.
 
-![img_16.png](img_16.png)
+![img_16.png](Images2/img_16.png)
 
  - 사용 방법을 살펴보자
  - 아래와 같이 String template을 이용하여 function을 사용할 수 있다.
  - 상황에 맞는 Template을 사용하면 된다.
  - 상황1: 사용자의 이름을 변경 member -> M
 
-![img_17.png](img_17.png)
+![img_17.png](Images2/img_17.png)
 
  - 아래와 같은 결과가 나온다.
 
-![img_18.png](img_18.png)
+![img_18.png](Images2/img_18.png)
 
  - 상황2: 사용자 이름이 소문자 이름과 동일한 결과만 가지고 오고 싶을 때
 
-![img_19.png](img_19.png)
+![img_19.png](Images2/img_19.png)
 
  - 모든 결과가 다 나오게 된다.
 
-![img_20.png](img_20.png)
+![img_20.png](Images2/img_20.png)
 
  - 하지만 아래의 결과와 똑같기 때문에 상황2는 아래와 같이 구현하는 것이 간결하다.
 
-![img_21.png](img_21.png)
+![img_21.png](Images2/img_21.png)
 
 
 
@@ -482,19 +482,19 @@ querydsl은 jpql의 builder 역할을 하는 것입니다.
  - member와 team 정보를 섞어서 원하는 데이터만 들고올 예정
    - MemberTeamDto를 만듦
 
-![img_23.png](img_23.png)
+![img_23.png](Images2/img_23.png)
 
  - admin 화면인데 회원 명, team 이름, 나이 등의 조건으로 검색할 수 있도록 함
    - MemberSearchCondition 이라는 dto 파일을 만듦
 
-![img_24.png](img_24.png)
+![img_24.png](Images2/img_24.png)
 
  - booleanbuilder를 이용해서 값을 가져옵니다.
  - 모든 where 조건이 null 일 경우 모든 데이터를 조회해 오기 때문에 이러한 경우는 주의해야합니다.
    - condition이 모두 null인 경우 막아주던가
    - 페이징 쿼리 또는 limit을 사용하도록 한다.
 
-![img_22.png](img_22.png)
+![img_22.png](Images2/img_22.png)
 
 
 
@@ -504,12 +504,12 @@ querydsl은 jpql의 builder 역할을 하는 것입니다.
 ## 동적 쿼리와 성능 최적화 조회 - Where절 파라미터 사용
  - 사용방법은 boolanBuilder와 비슷하다.
 
-![img_26.png](img_26.png)
+![img_26.png](Images2/img_26.png)
 
  - predicate 보다 booleanExpression 으로 사용하는 것을 추천
    - null만 조심하면 조립해서 사용할 수 있다, 메서드 재사용도 가능하다.
  
-![img_25.png](img_25.png) 
+![img_25.png](Images2/img_25.png) 
 
 
 ## 목 데이터 삽입 (가짜 데이터)
@@ -517,7 +517,7 @@ querydsl은 jpql의 builder 역할을 하는 것입니다.
  - postConstruct annotation이 들어있는 곳에 member를 저장하는 로직을 둘 수 있지만 postConstruct 어노테이션과 transactional 어노테이션은 같이 사용할 수 없다.
  - 스프링 라이프 사이클을 공부해보기 바란다.
 
-![img_27.png](img_27.png)
+![img_27.png](Images2/img_27.png)
 
 
 
@@ -530,7 +530,7 @@ querydsl은 jpql의 builder 역할을 하는 것입니다.
  - 스프링 데이터 리포지토리에 사용자 정의 인터페이스 상속
  - 핵심 비즈니스 로직이고, 재사용 가능성이 있으면서, 엔티티를 검색하는 경우에 사용
 
-![img_28.png](img_28.png)
+![img_28.png](Images2/img_28.png)
 
 
 
@@ -566,11 +566,11 @@ feat: 스프링 데이터 페이징 활용1 - queryDsl 페이지 연동
  - 클라이언트가 Querydsl에 의존해야 한다. 서비스 클래스가 Querydsl이라는 구현 기술에 의존해야 한다.
  - 복잡한 실무환경에서 사용하기에는 한계가 명확하다.
 
-![img_30.png](img_30.png)
+![img_30.png](Images2/img_30.png)
 
  - 결과는 아래와 같다.
 
-![img_29.png](img_29.png)
+![img_29.png](Images2/img_29.png)
 
 
 <br/><br/>
@@ -595,11 +595,11 @@ feat: 스프링 데이터 페이징 활용1 - queryDsl 페이지 연동
  - 아래와 같이 extends를 추가해줘야 한다.
  - super(Member.class)
 
-![img_32.png](img_32.png)
+![img_32.png](Images2/img_32.png)
 
  - 페이징을 아래와 같이 깔끔하게 할 수 있다.
 
-![img_33.png](img_33.png)
+![img_33.png](Images2/img_33.png)
 
 
 <br/><br/>
