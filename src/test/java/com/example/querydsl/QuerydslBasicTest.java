@@ -623,8 +623,8 @@ public class QuerydslBasicTest {
     public void findDtoBySetter() {
         List<MemberDto> result = queryFactory
                 .select(Projections.bean(MemberDto.class,
-                        member.username,
-                        member.age))
+                        member.age,
+                        member.username))
                 .from(member)
                 .fetch();
 
@@ -640,8 +640,8 @@ public class QuerydslBasicTest {
     public void findDtoByField() {
         List<MemberDto> result = queryFactory
                 .select(Projections.fields(MemberDto.class,
-                        member.username,
-                        member.age))
+                        member.age,
+                        member.username))
                 .from(member)
                 .fetch();
 
